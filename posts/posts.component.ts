@@ -1,6 +1,8 @@
 import {map} from 'rxjs/operator/map';
 import { Component, OnInit } from '@angular/core';
 import { PostService } from '../services/post.service';
+import { AppError } from '../common/app-error';
+import { NotFoundError } from '../common/not-found-error';
 
 @Component({
   selector: 'app-posts',
@@ -61,8 +63,8 @@ export class PostsComponent implements OnInit {
       this.posts.splice(index, 1);
       console.log(response.json());
     },
-    (error: Response) => {
-      if (error.status === 404) {
+    (error: AppError) => {
+      if (error instanceof NotFoundError) {
         alert(' this post is already deleted');
       } else {
         console.log(error);
