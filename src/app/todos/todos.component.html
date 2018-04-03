@@ -1,0 +1,11 @@
+<div class="col-md-3">
+    <h1>{{ title }}</h1>
+  <input [appInputFormat]="'uppercase'" #todo type="text" (keyup)="add($event, todo)" > <button class="btn btn-default" (click)="addTodo(todo)" >Add</button>
+  <ul class="list-group">
+    <li class="list-group-item" *ngFor="let todo of todos | async">
+      <app-todo [todo]="todo"></app-todo>
+    </li>
+  </ul>
+</div>
+
+
